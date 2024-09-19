@@ -9,7 +9,7 @@ export function getSortedPostsData() {
     const fileNames = fs.readdirSync(postsDirectory);
     // ['pre-rendering.md', ...]
     
-    const allPostsData = fileNames.map(fileNames => {
+    const allPostsData: any[] = fileNames.map(fileNames => {
         const id = fileNames.replace(/\.md$/, "");
 
         const fullPath = path.join(postsDirectory, fileNames);
@@ -19,8 +19,7 @@ export function getSortedPostsData() {
 
         return {
             id,
-            ...allPostsData(matterResult.data as { date: string; title: string})
-
+            ...matterResult.data as { date: string; title: string}
         }
     })
 
